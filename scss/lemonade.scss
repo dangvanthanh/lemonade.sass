@@ -7,109 +7,92 @@
  * https://github.com/dangvanthanh/lemonade.sass
  */
 
-// Import media queries mixin
+/* Import media queries mixin */
 @import "respond-to";
-// Variables
-$width-column: 100%;
+/* Variables */
+$width : 100%;
 
 *,
 *:before,
 *:after {
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-}	
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}  
 
-// Targets all elements
-[class*="bit-"] {
-	float: left;
-	padding: 10px;
-	&:last-of-type {
-		padding-right: 10px;
-		float: right;
-	}	
-}		
-
-// Clearfix
+/* Set the width of the grid */
 .frame {
-	&:after {
-		content: "";
-		display: table;
-		clear: both;
-	}	
-}		
+  width: 100%;
+  margin: 0 auto;
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }  
+}    
 
-// From bit-1 to bit12
+/* Attribute selector */
+[class*="bit-"] {
+  float: left;
+  padding: 0.3em;
+  &:last-of-type {
+    float: right;
+  }  
+}    
+
+/* Main width */
 @for $i from 1 through 12 {
-	.bit-#{$i} {
-		width: $width-column / $i;
-	}
-}	
+  .bit-#{$i} {
+    width: $width / $i;
+  }
+}
 
-/**
- * Mobile to Tablet Portrait
- */
+/* Landscape mobile & down */
 @include respond-to($phone) {
-	%width-full {
-		width: $width-column;
-	}	
+  %width {
+    width: $width;
+  }
 
-	@for $i from 1 through 12 {
-		.bit-#{$i} {
-			@extend %width-full;
-		}	
-	}		
+  @for $i from 1 through 12 {
+    .bit-#{$i} {
+      @extend %width;
+    }
+  }
+}      
 
-	.frame {
-		.bit-4 {
-			&:nth-child(2),
-			&:nth-child(4) {
-				float: right;
-			}	
-			&:nth-child(3) {
-				clear: both;
-				float: left;
-			}	
-		}		
-	}			
-}				
-
-/**
- * Tablet Portrait to Tablet Landscape
- */
+/* Portrait tablet to landscape */
 @include respond-to($tablet-portrait) {
-	.bit-4,
-	.bit-6,
-	.bit-8,
-	.bit-10,
-	.bit-12 {
-		width: $width-column / 2;
-	}	
+  .bit-4,
+  .bit-6,
+  .bit-8,
+  .bit-10,
+  .bit-12 {
+    width: $width / 2;
+  }
 
-	.bit-1,
-	.bit-2,
-	.bit-3,
-	.bit-5,
-	.bit-7,
-	.bit-9, 
-	.bit-11 {
-		width: $width-column;
-	}	
-}	
-
-/**
- * Tablet Landscape to Desktop
- */
+  .bit-1,
+  .bit-2,
+  .bit-3,
+  .bit-5,
+  .bit-7,
+  .bit-9, 
+  .bit-11 {
+    width: $width;
+  }
+}
+/* Landscape to small desktop */
 @include respond-to($tablet-landscape) {
-	.bit-2,
-	.bit-7 {
-		width: $width-column;
-	}	
+  .bit-2,
+  .bit-7 {
+    width: $width;
+  }
 
-	.bit-4,
-	.bit-8,
-	.bit-10,
-	.bit-12 {
-		width: $width-column / 2	
-	}	
-}		
+  .bit-4,
+  .bit-8,
+  .bit-10,
+  .bit-12 {
+    width: $width / 2;
+  }
+}    
